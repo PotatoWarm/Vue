@@ -6,7 +6,7 @@
 
   
 大家好我是玲，今天分享图标（Icon）在网页和应用程序中扮演着重要的角色，他们主要用于视觉上表示功能，操作或状态！平时我们打开网站的时候看见，导航栏前面都有一个属于自己的图标，接下来我们来创作一个属于自己的图标吧！
-<h2>♻网站分享</h2>
+<h2>♻网站分享</h2>https://geek.csdn.net/?utm_source=zhuzhantoolbar
 
 接下来分享一个免费，快速制作图标网址（标小智）：
 https://www.logosc.cn/favicon-generator</br>
@@ -24,7 +24,7 @@ https://www.bitbug.net/
 2.位图图标：如PNG或JPEG格式，适合固定尺寸的显示需求。
 
 <h2>👀效果展示</h2></br>
-![image](https://github.com/user-attachments/assets/fb066c09-08b1-473f-8af6-6d206a82cf03)
+
 
 
 
