@@ -25,8 +25,7 @@ https://www.bitbug.net/
 
 <h2>👀效果展示</h2></br>
 <img src='https://github.com/704214661/Vue/blob/main/ame.png' width='200'>
-![image](https://github.com/704214661/Vue/blob/main/ame.png)
-https://github.com/704214661/Vue/blob/main/favicon.png
+<img src='https://github.com/704214661/Vue/blob/main/favicon.png' width='200'>
 
 
 <h2>🌟灵感来源</h2></br>
