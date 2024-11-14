@@ -24,11 +24,8 @@ https://www.bitbug.net/
 2.位图图标：如PNG或JPEG格式，适合固定尺寸的显示需求。
 
 <h2>👀效果展示</h2></br>
-
-
-
-
-
+https://github.com/704214661/Vue/blob/main/ame.png
+https://github.com/704214661/Vue/blob/main/favicon.png
 
 
 <h2>🌟灵感来源</h2></br>
