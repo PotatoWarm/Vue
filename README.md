@@ -173,7 +173,6 @@ Markdown语法
 
     npm run ling
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7a31f8edf3f04dd3b86d418115b51e78~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=VgWRkcg4yjvCRdv6dv15KEoDO%2Fg%3D)
 
 ## 🍗注意事项
 
@@ -181,20 +180,18 @@ Vue文档你必须完整的看十遍,分为三个部分：
 
 *   [x] 指定导入一个Vue组件
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/c1f0808a181c4540a91cbdd42b0ba290~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=nSmAEZBEXEttoOGQF686IZcDVcs%3D)
 
 *   [x] 子组件用于封装和复用特定的功能或界面部分
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/702cdc0b1c9f4b8c9803152b465aa0ea~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=guy6Rifdz4mnJkySjvR78WbMHDQ%3D) \\
 
 *   [ ] 导出我们定义的名称为‘APP’的界面 \
     `components` 对象用于注册子组件，使这些子组件可以在当前组件的模板中使用。
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/a4bec48f78094baeb5cd447a5b397893~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=YAnk2%2BaqClwwiLCvTZPGit6my2I%3D)
+![image.png]
 
 ## 👀效果展示
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8033b95d419a4af2b93acb51d1e43558~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=F9N6jMfvThJq4TN7ZiqSyqG27rY%3D)
+![image.png]
 
 ## 🌟灵感来源
 
