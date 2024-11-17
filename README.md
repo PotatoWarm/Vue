@@ -112,3 +112,96 @@ Markdown语法
 学习过程中，看见Markdown语法与html语法不同，试着用Markdown语法在掘金上编写文章，对此很感兴趣，接下来文档编写会达到「心中无尘，码字入神」的境界！感谢您看完这篇文章，网站的一砖一瓦的贡献，会码出自己的小小世界！
 
 ## ake me dynamic!I love potato！
+
+# 🥔Potato小游戏之旅：Vue.js渐进式 JavaScript 框架
+
+## 👏开场白（日常记录）
+
+**大家好我是玲**，今天分享Vue.js渐进式 JavaScript 框架在web前端框架中扮演重要角色，他们基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API 和一流的文档。
+
+## ♻网站分享
+
+**深入学习网站**：\
+<https://cn.vuejs.org/> \
+工欲善其事，必先利其器。性能出色，作为前端工程师所需要掌握的语言，一定先要先做好准备，创造条件。
+
+## 👉小游戏运行
+
+*   首先确保你有Vue.js 的开发环境:
+
+<!---->
+
+    # 安装 Vue CLI（如果还没安装的话）
+    npm install -g @vue/cli
+
+    # 创建新的 Vue 项目
+    vue create maze-game
+
+    # 进入项目目录
+    cd maze-game
+
+*   将提供的代码保存为 Zoumigong.vue 文件，放在 src/components/ 目录下。
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/264831a2f9ce41f7b0e7cf5353fbb6a0~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=7ykiz8k3SpfVxuscArdRoQOm1Jc%3D)
+
+*   在 src/App.vue 中引入并使用这个组件：
+
+<!---->
+
+    <template>
+      <div id="app">
+        <zoumigong />
+      </div>
+    </template>
+
+    <script>
+    import Zoumigong from './components/Zoumigong.vue'
+
+    export default {
+      name: 'App',
+      components: {
+        Zoumigong
+      }
+    }
+    </script>
+
+*   运行项目：
+
+<!---->
+
+    npm run ling
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7a31f8edf3f04dd3b86d418115b51e78~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=VgWRkcg4yjvCRdv6dv15KEoDO%2Fg%3D)
+
+## 🍗注意事项
+
+Vue文档你必须完整的看十遍,分为三个部分：
+
+*   [x] 指定导入一个Vue组件
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/c1f0808a181c4540a91cbdd42b0ba290~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=nSmAEZBEXEttoOGQF686IZcDVcs%3D)
+
+*   [x] 子组件用于封装和复用特定的功能或界面部分
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/702cdc0b1c9f4b8c9803152b465aa0ea~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=guy6Rifdz4mnJkySjvR78WbMHDQ%3D) \\
+
+*   [ ] 导出我们定义的名称为‘APP’的界面 \
+    `components` 对象用于注册子组件，使这些子组件可以在当前组件的模板中使用。
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/a4bec48f78094baeb5cd447a5b397893~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=YAnk2%2BaqClwwiLCvTZPGit6my2I%3D)
+
+## 👀效果展示
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/8033b95d419a4af2b93acb51d1e43558~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgV2FybQ==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTMyNDAyMDc3NzY1Mjc4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1732406411&x-orig-sign=F9N6jMfvThJq4TN7ZiqSyqG27rY%3D)
+
+## 🌟灵感来源
+
+学习过程中，看Vue CLI 提供的一个命令，记录一下： \
+vue create name \
+npm i/npm i vue \
+`<script>` 标签引入了 Vue.js，需要使用 npm 来管理项目依赖，可以考虑将项目转换为一个基于 Node.js 的项目结构。
+
+试着用Vue.js相关的小游戏，执行运行写文章在掘金上，对Vue感兴趣，接下来会慢慢学习Vue。感谢您看完这篇文章，网站的一砖一瓦的贡献，会码出自己小小的世界！
+
+## ake me dynamic!I love potato！
+
