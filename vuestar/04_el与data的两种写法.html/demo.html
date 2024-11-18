@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ake me dynamic!</title>
+    <title>el与data的两种写法</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
     <div id="root">
-        <h1>你好，胡玲</h1>
-    </div>
-</body>
-<!--
+        <!--
 data与el的两种写法
 1.el有2种写法
 （1）.new Vue时候配置el，那么模板中的元素必须存在于el指定的元素中
@@ -33,37 +30,55 @@ data与el的两种写法
 4.el指定的元素必须存在于真实DOM中，否则报错
 5.el指定的元素只能有一个根元素
 -->
+        <h1>你好，{{ huling }}</h1>
+    </div>
+
 <script type="text/javascript">
-    Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
-    
-    const v = new Vue({
-        el:'#root',
-        data:{
-            msg:'你好，胡玲'
-        }
-    })
-    console.log(v)
-    
-    setTimeout(()=>{
-        v.$mount('#root')
-    },1000)
-    v.$data.msg = '你好，胡玲'
-    
+    Vue.config.productionTip = false;
+    //el的两种写法
+    //const v = new Vue({
+    //    el:'#root',
+    //    data:{
+    //        Hello:'huling'
+    //    }
+    //});
+    //console.log(v)
+    //关联root容器，用mount方法
+    //setTimeout() => {
+    //v.$mount('#root');//延时3秒后关联root容器,挂载到页面上
+    //},3000)
+
+    //data的两种写法
     new Vue({
-        el:'#root',
-        //data的第一种写法：对象式
-        /*
-        data:{
-        name:'你好，胡玲''
+        el: '#root',
+    //1.对象式(不常用:因为对象式写法中，data函数中的this指向window)
+    //data:{
+    //    Hello:'huling'
+    //}
+    //2.函数式(常用:因为函数式写法中，data函数中的this指向Vue实例对象)返回的对象中包含你想渲染的模板数据
+    //学习组件的时候要是用函数式，这个函数返回的对象中包含你想渲染的模板数据(用Vue来调用)    
+    //data: () => {
+    
+    //console.log(`@@@@`, this); 
+    //此时this是window，因为箭头函数没有自己的this，它向外查找找到的window
+    
+    //data:function()
+    //return {Hello:'huling'}
+    //}
+    //注意：使用函数式写法时，data函数中的this指向window，所以不能使用箭头函数，否则this指向window  
+    //箭头函数：() => {}
+    //普通函数：function(){}
+    //函数式写法中，data函数中的this指向Vue实例对象
+    //对象式写法中，data函数中的this指向window
+    //尽量不要使用箭头函数，否则this指向window，而不是Vue实例对象，导致this丢失
+    //const是ES6中新增的语法，表示常量，一旦声明，常量的值就不能改变
+    data(){
+        console.log(`@@@@`, this); //此时this是vue指(window，因为箭头函数没有自己的this，它向外查找找到的window) 
+        return {
+            Hello:'huling'
         }
-        */
-       
-        //data的第二种写法：函数式
-        data:function(){
-            console.log('@@@',this)//此处的this是Vue实例对象
-            return {name:'你好，胡玲'}
-            name:'你好，胡玲'
-        }
-    })
+    }
+});
 </script>
+</body>
 </html>

@@ -22,29 +22,53 @@
     -->
    
     <div id="root">
-        <h1>插值语法</h1>
-        <h2>你好，胡玲</h2>
+        <h1>Vue模板语法</h1>
+        <h2>你好，{{ name }}</h2>
+
         <hr/>
+        
         <h1>指令语法</h1>
-        <a v-bind:href="school.url.toUpperCase()" v-bind:x="Hello">点我去{{school.name}}学习Vue</a>
-        <a v-bind:href="url":x="Hello">点我去学习Vue</a>
+
+        <!-- 使用 v-bind 绑定 href 和 x 属性 -->
+        <a v-bind:href="url.toUpperCase()" v-bind:x="x">Start learning</a>
+        
+        <!-- 
+            使用 v-bind 简写为：（冒号）
+            完整语法：v-bind:href="url_taiwan" v-bind:x="x"
+            简写：:href="url_taiwan" :x="x"
+        -->
+
+        <a :href="url_huling" :x="x">Hello huling</a>
+
+        <p>个人主页: <a :href="cheng.url.toString()">{{cheng.name}}</a>
+        
+        <!--拓展：
+            toUpperCase() 将字符串中的所有字母转换为大写，仅适用于字符串
+            toLowerCase() 将字符串中的所有字母转换为小写，仅适用于字符串
+            toString() 可用于几乎所有数据类型
+            
+            let str = "Hello World";
+            console.log(str.toLowerCase()); // 输出: "hello world"
+            console.log(str.toUpperCase()); // 输出: "HELLO WORLD"
+        -->
     </div>
-</body>
 
-<script type="text/javascript">
-    Vue.config.productionTip = false;
-
+    <script type="text/javascript">
     new Vue({
         el: '#root',
         data: {
-            name: '胡玲',
-            url: 'https://v3-migration.vuejs.org/',
-            
-            school:{
-                name: 'Vue 学院',
-                url: 'https://vuejs.org/'
+            name: 'Start learning',
+            url: 'https://cn.vuejs.org/',
+
+            x: 'test v-bind',
+            url_huling: 'https://www.google.com.tw',
+
+            cheng:{
+                name: '登峰造极',
+                url: 'https://juejin.cn/user/132402077765278/posts'
             }
         }
     });
-</script>
+    </script>
+</body>
 </html>

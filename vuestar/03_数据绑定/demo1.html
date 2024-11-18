@@ -3,23 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ake me dynamic!</title>
+    <title>Vue数据绑定</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
-    <div id="root">
-        单项数据绑定：<input type="text" v-bind:value="name"><br/>
-        双项数据绑定：<input type="text" v-model:value="name">
+    <h1>Vue数据绑定</h1>
 
-        <!--v-model只能用在表单类元素（输入类元素）
-        单项数据绑定：页面输入框值  会  绑定到data中的name中
-        双项数据绑定：页面输入框值   不会   绑定到data中的name中
+    <!-- 
+    两种方法：
+    1.单项数据绑定（v-bind）：页面输入框值  会  绑定到data中的name中 （数据只能从data流向页面，）
+    2.双项数据绑定（v-model）：页面输入框值   不会   绑定到data中的name中（数据不仅能从data流向页面，还可以从页面输入框值也会绑定到data中的name中）
+    -->
+
+    <div id="root">
+        <label>
+        单项数据绑定：
+        <input type="text" v-bind:value="name"> <br/>
+         <!--
+        简写：
+        <input type='text' :value="name"/>
         -->
-        
-        <h2 v-bind:x="name">你好啊</h2>
+        双项数据绑定：
+        <input type='text' v-model="name"/>
+        <!-- <input type="text" v-model:value="name"> -->
+        </label>
+        <br/>
+        <!-- 
+        不是什么都可用v-model的，这里v-model不支持h1标签
+        v-model只能用在表单类元素（输入类元素），与用户交互（都有共同的value属性）
+        -->
+        <h2 v-bind:x="name">
+            你好啊
+        </h2>
     </div>
 </body>
 <script type="text/javascript">
+    //v-bind:value 简写：:value 可以完成数据绑定（单项绑定）
+    //v-model 可以完成数据绑定（双向绑定）
     Vue.config.productionTip = false;// 阻止vue在启动时生成生产提示
     
     new Vue({
