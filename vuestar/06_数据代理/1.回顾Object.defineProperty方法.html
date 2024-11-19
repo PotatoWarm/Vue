@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回顾Object.defineProperty方法</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let number = 100;
+        let obj = {
+            name:"huling",
+            sex:"女",
+            address:"hunanchangsha",
+            age:21
+        }
+
+        //此时，obj对象中有一个属性age，但是没有被定义
+        //现在通过Object.defineProperty方法为obj对象添加age属性，并设置其值为21
+        // 1.为obj对象添加age属性，并设置其值为21
+        // 2.为obj对象的age属性设置get和set方法
+        //
+        Object.defineProperty(person,"age",{
+            //value:21,//此时代表直接赋值
+            //enumerable:true,//此时代表可枚举
+            //configurable:true,//此时代表可配置,重写该属性（控制属性是否可以被删除 默认为false）
+            //writable:true,//此时代表可写,重写该属性（控制属性是否可以被删除）
+
+            //当读到person的age属性时，会调用get方法，并且返回age的值
+            //invoke property proxy 映射数据代理
+            get:function(){
+                //测试它的调用时机
+                console.log("get被调用了")
+                //此时age的值就是number的值
+                return number
+            },
+            //当设置person的age属性时，会调用set方法，并且将设置的值赋值给number
+            set(value){
+                //测试它的调用时机  
+                console.log("set被调用了")
+                //此时age的值就是number的值
+                number = value
+            }
+        })
+
+        //console.log(Object.keys(person))
+
+        //遍历
+        //for(var p in person){
+        //    console.log('@@',person[p])
+        //}
+
+    </script>
+</body>
+</html>

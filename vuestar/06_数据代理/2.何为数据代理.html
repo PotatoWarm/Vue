@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>何为数据代理</title>
-    <script src="/js/vue.js"></script>>
+    <title>定义数据代理</title>
 </head>
-<body>
-    <!-- 数据代理:通过一个中间对象来代理访问原始数据，从而实现对数据的保护。（通过一个对象代理对另外一个对象中属性的操作（读/写）） -->
+<body>  
+    <!-- 数据代理:通过一个中间对象来代理访问原始数据，从而实现对数据的保护。
+     （通过一个对象代理对另外一个对象中属性的操作（读/写））
+    -->
      <script type="text/javascript">
         let obj = {x:100}
         let obj2 ={y:200}
-        
+        //通过obj2对象来代理obj对象的x属性 
         Object.defineProperty(obj2,'x',{
             get(){
                 return obj.x
             },
             set(value){
-                obj.x = value
+                obj.x = value;
+                console.log('set被调用了，obj.x的值为：',obj.x)
             }
         })
      </script>

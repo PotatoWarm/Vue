@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="/js/vue.js"></script>
+    <!-- 
+                +-----------------------------------+
+            |             Margin(外边距)              |
+                |    +-------------------------+     |
+                |    |        Padding(内边距)        |    |
+                |    |    +-----------+      |      |
+                |    |    |  Content(内容  )  |     |    |
+                |    |    +-----------+      |     |
+                |    |         ↑             |     |
+                |    +-------------------------+   |
+                |                ↑                 |
+                +-----------------------------------+
+                *表示所有标签
+                margin: 20px; 表示所有标签的外边距为20px
+                padding: 10px; 表示所有标签的内边距为10px   
+    -->
+    <style>
+        *{
+            margin: 20px;
+            padding: 10px;
+        }
+        
+        .demo1{
+            padding: 50px;
+            width: 500px;
+            height: 100px;
+            background: pink;
+        }
+
+        .box2{
+            padding: 5px;
+            width: 500px;
+            height: 100px;
+            background-color: deepskyblue;
+        }
+
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: darkgreen;
+            overflow: auto;
+            /* 显示滚动条 */
+        }
+        .list li{
+            height: 30px;
+            /* 行高 */
+
+            line-height: 50px;
+           /*   vertical-align: middle;    水平居中   */
+
+            text-align: center;
+           /* 垂直居中 */
+
+            /* 字体大小 */
+            font-size: 20px;
+            /*或者使用数值：
+            line-height: 50px;   */
+
+            /* 字体加粗 */
+            font-weight:bold;
+
+            /* 字体颜色 */
+            color: deeppink;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        VUe中的事件修饰符：
+        1.prevent：阻止默认事件（常用）
+        2.stop：阻止事件冒泡（常用）
+        3.once：事件只触发一次（常用）
+        4.capture：使用事件的捕获模式
+        5.self：只有event.target是当前操作的元素时才触发事件
+        6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕 
+    -->
+    <div id="root">
+        <h1>欢迎学习Vue{{huling}}</h1>
+        <!-- 阻止默认事件(常用 如：阻止a标签跳转 ) -->
+        <a href="https://juejin.cn/user/132402077765278" @click.prevent="showInfo">点我进入我的个人主页</a>
+        <!-- 阻止事件冒泡(常用 如：阻止事件冒泡 ) -->
+
+
+        <div class="demo1" @click.stop="showInfo">
+            <button @click.stop="showInfo">点我提示信息</button>
+            <!-- @click.stop意思是阻止事件冒泡  div1与 button是父子关系，点击button会触发div1的点击事件，
+             修饰符也可以连用，例如下面事件是阻止默认事件和阻止事件冒泡 -->
+            <!-- a href="http://www.baidu.com" @click.prevent.stop="showInfo">中国百度</a>
+         -->
+        </div>
+        
+
+        <!-- 事件只触发一次(常用) -->
+        <button @click.once="showInfo" >点我提示信息，只在第一次触发</button>
+        <!-- @click.once意思是事件只触发一次 
+        
+        事件捕获模式 -->
+
+
+
+        <!-- capture：使用事件的捕获模式 让事件以捕获模式触发事件（先捕获冒泡） -->
+        <div class="demo1" @click.capture="showInfo（1）">
+            div1
+            <div class="box2" @click="showInfo(2)">div2</div>
+        </div>
+        <!-- self：只有event.target是当前操作的元素时才触发事件 (变相阻止事件冒泡)-->
+
+
+
+        <div class="demo1" @click.self="showInfo(4)">
+            <button @click="showInfo(5)">点我提示信息</button>
+        </div>
+        <!-- passive：事件的默认行为立即执行，无需等待事件回调执行完毕 -->
+        <!--
+        scroll （滚动条一动就会触发事件）事件的默认行为是滚动，使用passive事件修饰符可以提高用户体验，
+        因为浏览器可以立即开始滚动，而无需等待事件回调执行完毕。    
+        wheel 鼠标滚轮事件    
+        -->
+
+
+        <!-- 事件的默认行为立即执行，无需等待事件回调执行完毕
+        @scroll.passive是   vue提供的，可以提高用户体验
+        -->
+        <ul class="list" @scroll.passive="showInfo(6)">
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+            <li>444</li>
+            <li>555</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el:"#root",
+            data(){
+                return{
+                    name:"huling"
+                }
+            },
+            //data()是函数，返回一个普通对象，对象中的数据是响应式的
+            methods:{
+                showInfo(e){
+                    //e.preventDefault();阻止e标签默认行为
+                    //e.stopPropagation();阻止事件冒泡
+                    //alert("我被点击了");
+                    console.log(e.target.innerText);
+                },
+                showMsg(msg){
+                    console.log(msg);
+                },
+                demo(){
+                    //console.log('@')
+                    //for(let i=0;i<10000;i++){
+                    //    console.log('#');
+                    //}
+                    //console.log('累了');
+                    //console是同步任务，for是异步任务，所以会先打印累了，再打印#
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>el和data两种写法</title>
+    <title>MVVM模型</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
@@ -18,8 +18,32 @@
     2.vm身上所有的属性，及Vue原型上所有属性，在Vue模板中都可以直接使用。
     -->
     <div id="root">
-        <h1>学校名称：{{name}}</h1>
-        <h1>学校地址：{{address}}</h1>
+        <!-- 
+        view层：模板代码
+        model层：data中的数据   
+        -->
+        <h1>个人姓名：{{name}}</h1>
+        <h1>所属地域：{{address}}</h1>
+        <h1>个人年龄：{{age}}</h1>
+        <h1>个人性别：{{sex}}</h1>
+        <h1>个人爱好：{{hobby}}</h1>
+        <h1>个人简介：{{introduction}}</h1>
+        <button @click="test">测试</button>
+        <!-- 
+        所有viwewModel和vue原型上的属性在视图中的{{}}中都可以直接使用
+        
+        <h1>测试一下1：{{$options}}</h1>
+        <h1>测试一下2：{{$emit}}</h1>
+        <h1>测试一下3：{{_c}}</h1>
+        <h1>测试一下4：{{$data}}</h1>
+        <h1>测试一下5：{{$el}}</h1>
+        所有事件绑定都用@开头
+        事件修饰符：
+        1.prevent:阻止默认事件（常用）
+        2.stop:阻止事件冒泡（常用）
+        3.once:事件只触发一次（常用）
+        事件绑定：@click="test"
+        -->
     </div>
 </body>
 
@@ -29,9 +53,17 @@
     const vm = new Vue({
         el:"#root",
         data:{
-            name:"尚硅谷",
-            address:"北京昌平区",
-            a:1
+            name:"胡玲",
+            address:"湖南长沙",
+            age:21,
+            sex:"女",
+            hobby:"敲代码，听歌，视觉设计，games，阅读",
+            introduction:"我是一个喜欢敲代码的女生"
+        },
+        methods:{
+            test(){
+                console.log("test")
+            }
         }
     })
     console.log(vm)
