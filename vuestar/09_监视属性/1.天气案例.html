@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>今天天气很{{info}}</h1>
+    <!--
+    点击函数里面可以书写较为简单的语句
+    @xxx="函数名"   可以是一些简单的函数
+    <button @click="changeWeather = !ishot">切换天气</button>
+    -->
+    <button @click="changeWeather">
+        切换天气
+    </button>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    //注意：Vue.config 前必须要大写，这是Vue是一个构造函数
+    new Vue({
+        el:"#root",
+        data:{
+            ishot:true
+        },
+        //计算属性
+        computed:{
+            info(){
+                return this.ishot ? "炎热" : "凉爽";
+            }
+        },
+            //改变模板数据的方法
+        methods:{
+            changeWeather(){
+                this.ishot = !this.ishot;
+                }
+            }
+    })
+</script>
+</body>
+</html>

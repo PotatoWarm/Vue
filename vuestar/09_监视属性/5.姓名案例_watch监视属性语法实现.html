@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_watch监视属性语法实现</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!--v-model 双向绑定  -->
+        <!--
+        computed 和 watch 的区别：
+        1.computed 能完成的功能，watch 都可以完成
+        2.watch 能完成的功能，computed 不一定能完成
+        3.一般来说，如果需要进行数值的计算，使用 computed
+        4.如果需要监视数据的变化，使用 watch    
+
+        两个重要的小原则：
+        1.所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象   
+        2.所有不被Vue管理的函数（定时器的回调函数、ajax的回调函数，promise的回调函数 ，回调函数等），最好写成箭头函数，
+        这样this的指向才是vm或组件实例对象  
+        -->
+        姓：<input type="text" v-model="firstName"/>
+        <br/>   
+        名：<input type="text" v-model="lastName"/>
+        <br/>
+        <span>全名：{{fullName}}</span>   
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;  //阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                //data里都是属性
+                firstName:"张",
+                lastName:"三",
+                fullName:"张三",
+                test:"test",
+            },
+            watch:{
+                //这里不需要深度监视则简写 监视firstName lastName
+                //计算属性不能开启异步操作更新
+                firstName(val){
+                    //this === vm
+                    this.fullName = val + this.lastName;
+                    setTimeout(()=>{
+                        //继承外部作用域的this/注意此时的函数是箭头函数（因为它并不是vue的函数 ，而是window的函数）
+                        //如果写成function（）{} 则this === window ,则无法更新watch属性
+                        //异步操作更新
+                        this.fullName = val + '-' +this.lastName;
+                    },3000);
+                },
+                lastName(val){
+                    this.fullName = this.firstName + '-' +val;
+                }
+            },
+        });
+    </script>
+</body>
+</html>

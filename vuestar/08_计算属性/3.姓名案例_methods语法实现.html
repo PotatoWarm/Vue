@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue计算属性语法实现姓名案例</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div id="root">
+            <!-- v-model:双向数据绑定   -->
+            <!-- 或者保留原来的name，但需要再data中定义 -->   
+            姓：<input type="text" v-model="firstName">
+            <br/><br/>
+            名：<input type="text" v-model="lastName">
+            <br/><br/>
+            测试：<input type="text" v-model="test">
+            <br/><br/>
+            全名：<span>{{fullName}}</span>   
+        </div>
+        <script type="text/javascript">
+            const vm = new Vue({
+                el:"#root",
+                data:{
+                    firstName:"陈",
+                    lastName:"五",
+                    test:"text"
+                },
+                //计算属性--> 旧属性加工
+                computed:{
+                    fullName:{
+                        // get的作用：当读取fullName时，会调用get函数，且返回值为fullName的值
+                        //defineProperty()
+                        //注意vm.data是不存在计算属性的
+                        //计算属性算完之后直接丢到了viewModel实例对象中
+                        /*
+                        *get什么时候调用？（调用时机）
+                        *1.当读取fullName时，会调用get函数 (初次读取计算属性时，也会调用get函数)
+                        *2.当依赖的数据（data）的属性发生变化时，不改变的话直接读取缓存
+                        *3.method没有缓存，读几次调用几次无论要的数据是否发生变化
+                        *4.计算属性一般用于读取，而methods一般用于写入  
+                        *@returns{String} 返回值为计算属性的值 
+                        */
+                        get(){
+                            //此时get函数的this指向是vm
+                            console.log("get被调用了",this.lastName)
+                            return this.firstName+ '--' + this.lastName
+                        },
+                        // 当修改fullName时，会调用set函数
+                        /*
+                        *set什么时候调用？
+                        *当fullName被修改时 
+                        *@param value 修改后的值    
+                        */
+                        set(value){
+                            //修改计算属性所依赖的普通属性（放在data里面）
+                            //this === vm
+                            const [fristName,lastName] = value.split('--')
+                            this.firstName = fristName
+                            this.lastName = lastName;//依赖属性发生改变之后，计算属性会自动改变
+                            
+                    }
+                }
+                }
+        });
+        </script>
+    </div>
+</body>
+</html>
