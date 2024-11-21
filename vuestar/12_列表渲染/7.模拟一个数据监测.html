@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟一个数据监测</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+<script type="text/javascript">
+        let data = {
+            name:'长沙',
+            address:'橘子洲头'
+        }
+        
+        const obs = new observer(data); 
+
+        let vm = {};
+        //声明移到了Observe实例化之前 
+
+        function observer(obj){
+            const keys = Object.keys(obj);
+            keys.forEach((key)=>{
+                Object.defineProperty(this,key,{
+                    //this指向observer实例
+                    get(){
+                        return obj[key];
+                    },
+                    set(newValue){
+                        console.log(`${key}被改了，我要去解析模板，生成虚拟DOM，更新页面`);
+                        obj[key] = newValue;
+                    }
+                })
+            })  
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.6/dayjs.min.js"></script>
+    <!-- 引入dayjs库 的CDN链接，dayjs是一个轻量级的JavaScript日期库，提供了简单易用的API来处理日期和时间。-->
+</head>
+<body>
+    <!--
+     过滤器：对数据进行格式化处理，过滤器可以分为全局过滤器和局部过滤器,对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理）
+     语法：
+         1.注册过滤器：Vue.filter(name,callback)或new Vue{filters:{}}
+         2.使用过滤器：{{xxx | 过滤器名}} 或 v-bind:属性="xxx | 过滤器名"
+     备注：
+         1.过滤器也可以接收额外参数、多个过滤器也可以串联
+         2.并没有改变原本的数据，是产生新的对应的数据   
+     
+    
+    
+    -->
+    <div id="root">
+        <h1>显示格式化后的时间</h1>
+        <!-- 计算属性实现 -->
+        <h2>当前日期：{{formatTime(time)}}</h2>
+        <!-- methods实现 -->
+        <h2>当前日期：{{getFormatTime}}</h2>
+        <!-- 过滤器实现 -->
+        <h2>当前日期：{{time | timeFormater}}</h2>
+        <!-- 过滤器串联（多个过滤器可以串联 ，从右向左依次执行  ，传递参数） --> 
+        <h2>当前日期：{{time | timeFormater('YYYY-MM-DD') | myslice}}</h2>
+        <h3 :x="msg | myslice">你好，世界</h3>
+    </div>
+
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip=false;
+        // 全局过滤的配置
+        //注意配置一定要能new vue实例之前确定
+        Vue.filter('myslice',function(value){
+            return value.slice(0,4)
+        });  
+        new Vue({
+            el:'#root',
+            data:{
+                time:new Date(),
+                msg:'hello,world'
+            },
+            computed:{
+                // 计算属性实现
+                getFormatTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },  
+            methods:{
+                // methods实现
+                formatTime(time){
+                    return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            // 局部过滤器   
+            filters:{
+                // 过滤器名：过滤器函数
+                formatTime(time){
+                    return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+                },
+                timeFormater(time){
+                    return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+                },
+            }   
+        })
+
+        // const vm=new Vue({
+        //     el:'#root',
+        //     data:{
+        //         time:new Date(),
+        //         msg:'hello,world'
+        //     }   
+        // })    
+    </script>
+</body>
+</html>

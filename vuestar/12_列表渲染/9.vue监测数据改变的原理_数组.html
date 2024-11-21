@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue监测数据改变的原理_数组</title>
+    <script src="../js/vue.js"></script>    
+</head>
+<body>
+<div id="root">
+    <h1>景区信息</h1>
+    <h2>景区名称：{{Name}}</h2>
+    <h2>景区地址：{{address}}</h2>
+    <hr/>
+    <h1>景点信息</h1>
+    <button @click.once="show">点我显示景点信息</button>
+    <h2>旅客姓名：{{passenger.name}}</h2>
+    <h2>旅客真实年龄：{{passenger.age.rage}}</h2>
+    <h2>旅客对外年龄：{{passenger.age.sAge}}</h2>
+    <h2 v-if="passenger.sex">旅客性别：{{passenger.sex}}</h2>
+    <h2>朋友们</h2>
+
+    <!-- 对于朋友列表，使用friend.name作为key -->
+    <ul v-for="(friend,index) in passenger.friends" :key="friend.name">
+        <li>{{friend.name}} -- {{friend.age}}</li>
+    </ul>
+
+
+    <h2>爱好</h2>
+    <!--
+    Vue将被侦听的数组：（将被侦听的数组的变更方法进行了包裹，所以他们将会触发视图更新。这些被包裹过的方法包括：
+    push() 意思是在数组  最后   添加   一个元素 
+    pop() 意思是在数组  最后   删除   一个元素
+    shift() 意思是在数组  最前面   删除   一个元素
+    unshift() 意思是在数组  最前面   添加   一个元素
+    splice() 意思是在数组中   添加或删除   元素
+    sort() 意思是在数组中   排序
+    reverse() 意思是在数组中   反转 
+    -->
+
+    <!-- 对于爱好列表，可以使用hobby+index的组合作为key -->
+    <ul v-for="(hobby,index) in passenger.hobby" :key="hobby + index">
+        <li>{{hobby}}</li>
+    </ul>
+    <!-- <h2 v-else>旅客性别：保密</h2> -->
+
+
+
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            Name:'长沙',
+            address:'橘子洲头',
+            passenger:{
+                name:'张三',
+                age:18,
+                sex:'男',
+            
+                friends:[
+                    {name:'李四',age:20},
+                    {name:'王五',age:21},
+                    {name:'赵六',age:22}
+            ],
+            hobby:['旅游','爬山','游泳']
+            }
+        },  
+        methods:{
+            show(){
+                //这里this === vm   
+                // 这里使用Vue.set()方法(  或者vm.$set（）  )，可以触发视图更新   APL能够添加的属性变为响应式属性
+                // 注意对象不能是Vue 实例,或者Vue 实例的根数据对象  
+                Vue.set(this.passenger,'age',{rage:20,sAge:18});
+                //this.$set(this.passenger,'age',{rage:20,sAge:18});
+            }
+            
+        }
+    })          
+</script>
+</body>
+</html>

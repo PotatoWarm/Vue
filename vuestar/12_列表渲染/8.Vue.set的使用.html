@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.set的使用</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+<div id="root"  >
+    <h1>旅客信息</h1>
+    <h2>景区名称：{{name}}</h2>
+    <h2>景区地址：{{address}}</h2>
+    <hr/>
+    
+    <h1>景区地址</h1>   
+    <button @click.once="addSex">添加一个性别属性，默认值是男</button>
+    <h2>游玩人姓名：{{passenger.name}}</h2>
+    <h2>本人真实年龄：{{passenger.age.rage}}</h2>
+    <h2>本人对外年龄：{{passenger.age.sage}}</h2>
+    <h2 v-if="passenger.sex">旅客性别：{{passenger.sex}}</h2 >
+    <hr/>
+    <h2>朋友们</h2>
+    <ul v-for="(f,index) in passenger.friends":key="index">
+        <li>{{f.name}} -- {{f.age}}</li>
+    </ul>
+
+    <hr/>
+    <button @click.once="addCar">添加一个汽车属性，默认值是一辆奔QA 驰</button>
+    <h2>汽车名称：{{car.name}}</h2>
+    <h2>汽车价格：{{car.price}}</h2>
+    <h2>汽车类型：{{car.type}}</h2>
+</div>
+<script type="text/javascript">
+    const vm=new Vue({
+        el:'#root',
+        data:{
+            name:'长沙',
+            address:'橘子洲头',
+            passenger:{
+                    name:'张三',
+                age:{
+                    rage:18,
+                    sage:18
+                },
+                friends:[
+                    {name:'李四',age:20},
+                    {name:'王五',age:21},
+                ]
+            },
+        
+            car:{
+                name:'奔驰',
+                price:300000
+
+            }   
+        },
+        methods:{
+            addSex(){
+                //这里this === vm
+                //利用vue.set(或者vm.$set（）API能够添加的属性变为响应式属性)
+                //注意：对象不能是Vue实例，或者是Vue实例的根数据对象     
+                Vue.set(this.passenger,'sex','男')
+                // this.$set(this.stu, 'sex', '男');
+            },
+            addCar(){
+                Vue.set(this.car, 'type', '轿车')  // 添加新的汽车类型属性
+            }
+        }
+    })
+</script>
+</body>
+</html>

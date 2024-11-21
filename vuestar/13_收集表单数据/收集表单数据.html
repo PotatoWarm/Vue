@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div id="root">
+        <!--     userInfo 意思是一个对象，里面有username和password两个属性
+                 submit 意思是一个布尔值，默认是false  
+                 
+                收集表单数据：
+                若：
+                <input type="text" v-model="userInfo.username">
+                则：
+                v-model收集的是value值，用户输入的就是value值。
+
+                若：
+                <input type="radio" v-model="userInfo.username">
+                则：
+                v-model收集的是value值，且要给标签配value值。   
+
+                若：
+                <input type="checkbox" v-model="userInfo.hobby">
+                则：
+                v-model收集的是checked值，checked值为true或false（布尔值）。
+                1.没有配置input的value值，那么收集的就是checked值（勾选 or 不勾选 ）。
+                2.配置了input的value值，那么收集的就是value值。
+                3.v-model的初始值是数组，那么收集的就是数组（value组成的数组）。
+                
+                若：
+                <select v-model="userInfo.university">
+                则：
+                v-model收集的是value值，且要给标签配value值。
+                
+
+                备注：v-model的三个修饰符：
+                    
+        -->
+        <form @submit.prevent="showInfo">
+            <!-- 写了label则点击它也能使指定的input获得焦点  for属性的值为指定元素的id -->
+
+            <label for="username">账号：</label>
+            <!-- 使用v-model绑定数据，数据会自动同步到userInfo对象的username属性 -->
+            <input type="text" id="username" v-model="userInfo.username"> 
+            <!-- <span>{{userInfo.username}}</span> 显示用户名和密码的span标签-->
+            <br/>
+            <label for="password">密码：</label>
+            <input type="password" id="password" v-model="userInfo.password"> 
+            <!-- <span>{{userInfo.password}}</span> 显示用户名和密码的span标签-->
+            <br/>
+
+            性别：
+            <!-- 组radio单选框的name值一定要相同，设置value值好让v-model去双向绑定 -->
+            <input type="radio" v-model="userInfo.sex"  name="sex" value="男">男
+            <input type="radio" v-model="userInfo.sex"  name="sex" value="女">女
+            <br/>
+
+            年龄：<input type="number " v-model.number="userInfo.age"/>
+            <br/>
+
+            爱好：
+            <!-- 如果没有value值则v-model收集checked元素-->
+            <input v-model="userInfo.hobby" type="checkbox" value="stduy">学习
+            <input v-model="userInfo.hobby" type="checkbox" value="game">打游戏
+            <input v-model="userInfo.hobby" type="checkbox" value="eat">吃饭
+            <br/>
+
+            所属学校：
+            <select v-model="userInfo.university">
+
+                <option value="北大">北大</option>
+                <option value="清华">清华</option>
+                <option value="复旦">复旦</option>
+                <option value="浙大">浙大</option>
+                <option value="上交">上交</option>
+                <option value="南大">南大</option>
+                <option value="中科大">中科大</option>
+                <option value="北航">北航</option>
+                <option value="北理">北理</option>
+                <option value="北师大">北师大</option>
+                <option value="北外">北外</option>
+                <option value="北语">北语</option>
+                <option value="北交">北交</option>
+            </select>
+            <br/>
+
+            其他信息：
+            <textarea v-model.trim="userInfo.other"></textarea>
+            <br/>
+
+            <input type="checkbox" v-model="userInfo.agree">阅读并同意用户协议<a href="http://www.baidu.com">《用户协议》</a>
+            <button>提交</button>
+        </form>
+    </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false;
+            const vm = new Vue({
+                el:"#root",
+                data:{
+                    userInfo:{
+                        accoun:'',
+                        password:'',
+                        sex:'',
+                        age:'',
+                        hobby:[],
+                        city:'',    
+                        university:'',
+                        other:'',
+                        ifAgree:'',
+                    },
+                },
+                methods:{
+                    showInfo(){
+                        //json转换为string
+                        console.log(JSON.stringify(this.userInfo));
+                    }
+                }
+            })  
+        </script>
+</body>
+</html>
