@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>回顾Object.defineProperty方法</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+    <!-- 注意：控制台报错，无favicon添加图标上去，解决404错误  -->
 </head>
 <body>
     <script type="text/javascript">
@@ -20,7 +23,9 @@
         // 1.为obj对象添加age属性，并设置其值为21
         // 2.为obj对象的age属性设置get和set方法
         //
-        Object.defineProperty(person,"age",{
+        Object.defineProperty(obj,"age",{
+            //控制台出现错误，提示：Uncaught ReferenceError: person is not defined
+            //解决：将person改为obj ,原因是object.defineProperty时使用了未定义的变量person。
             //value:21,//此时代表直接赋值
             //enumerable:true,//此时代表可枚举
             //configurable:true,//此时代表可配置,重写该属性（控制属性是否可以被删除 默认为false）

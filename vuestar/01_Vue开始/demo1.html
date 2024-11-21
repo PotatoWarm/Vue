@@ -8,6 +8,8 @@
     <title>第一次使用vue</title>
     <!--vue js生产版本production版本-->
     <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+    <!--404警告，项目中没有这个文件，添加favicon-->
 </head>
 <body>
     <div id="root">
@@ -40,7 +42,9 @@
            data: {
                //data用来存储数据，以后会用函数来表示
                name:'panyue',
-               age:21
+               age:21,
+               huling:'Vue'//添加这一行
+
            }
        });
 
@@ -51,6 +55,20 @@
                address: 'Tokyo'
            }
        })
+       
     </script>
+    <!--
+    报错问题：（控制台）
+    [Vue warn]: Property or method "huling" is not defined on the instance 
+    but referenced during render. Make sure that this property is reactive,
+     either in the data option, or for class-based components, by initializing the property. 
+     See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
+
+     解决方法：
+        模板中使用的数据必须先在data（huling)变量中声明，但在Vue实例的data选项中没有定义这个属性。
+        修复问题：
+        1.age需要逗号结束
+        2.添加huling变量 huling:'Vue'（报错解决方法）
+    -->
 </body>
 </html>

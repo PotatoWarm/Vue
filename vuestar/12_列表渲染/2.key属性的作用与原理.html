@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>基本列表</title>
+    <script src="../js/vue.js"></script>        
 </head>
 <body>
-    
+    <div id="root">
+        <h2>人员列表</h2>
+        <button @click.once="add">添加一个老刘</button>
+        <!--
+           <button @click.once="add">添加一个老刘</button>
+           onece：事件只触发一次
+        -->
+
+        <ul>
+            <li v-for="(p,index) in person" :key="p.id">
+                {{p.name}} - {{p.age}} - {{index}}
+                <input type="text"/> 
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                person:[
+                    {id:1,name:'张三',age:18},
+                    {id:2,name:'李四',age:19},
+                    {id:3,name:'王五',age:20}]
+            },
+            methods:{
+                add(){
+                const p = {id:4,name:'老刘',age:21}
+                this.person.push(p)
+                // this.person.unshift({
+                //     id:5,
+                //     name:'老刘',
+                //     age:22
+                // })   
+            }
+        }
+    })
+    </script>
 </body>
 </html>

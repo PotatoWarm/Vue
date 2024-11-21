@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>事件修饰符</title>
-    <script src="/js/vue.js"></script>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
     <!-- 
                 +-----------------------------------+
             |             Margin(外边距)              |
@@ -106,7 +107,7 @@
 
 
         <!-- capture：使用事件的捕获模式 让事件以捕获模式触发事件（先捕获冒泡） -->
-        <div class="demo1" @click.capture="showInfo（1）">
+        <div class="demo1" @click.capture="showInfo(1)">
             div1
             <div class="box2" @click="showInfo(2)">div2</div>
         </div>
@@ -141,7 +142,11 @@
             el:"#root",
             data(){
                 return{
-                    name:"huling"
+                    name:"huling",
+                    huling:"huling",//添加这一行，解决控制台报错问题
+                    //1.data中的数据是响应式的，当数据发生变化时，视图会自动更新
+                    //2.在你的代码中，模板使用了{{huling}}，但只定义了name，没有定义huling，所以会报错
+                    //3.模板使用{{}}语法，如果使用的是data中的数据，则必须先定义  ,添加huling属性后，Vue就能正确识别并渲染这个值了。
                 }
             },
             //data()是函数，返回一个普通对象，对象中的数据是响应式的

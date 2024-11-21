@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>el与data的两种写法</title>
-    <script type="text/javascript" src="../js/vue.js"></script>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+    <!-- 注意：控制台报错，无favicon添加图标上去，解决404错误  -->
 </head>
 <body>
     <div id="root">
@@ -75,7 +77,7 @@ data与el的两种写法
     data(){
         console.log(`@@@@`, this); //此时this是vue指(window，因为箭头函数没有自己的this，它向外查找找到的window) 
         return {
-            Hello:'huling'
+            huling:'world'
         }
     }
 });

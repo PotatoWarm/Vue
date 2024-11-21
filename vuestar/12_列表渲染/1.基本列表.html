@@ -60,7 +60,8 @@
         <!--
         注意：遍历字符串的时候，先收到的是字符串中的每一个字符，第二项是对应的索引：index
         --> 
-        <ul v-for="(char,index) of str" :key="index">
+        <ul v-for="(char,index) of str" :key="'str_' + index">
+            <!--key="index"   修改  key="'str_' + index"-->
             <li>
                 {{char}} - {{index}} - {{str.length}}
             </li>
@@ -70,7 +71,8 @@
         <!--
         注意遍历指定次数的时候先收到的是number（例如s,则number是1,2,3,4,5），第二项是索引：index（从0开始计数，则是0,1,2,3,4 ）
         --> 
-        <ul v-for="(num,index) in 5" :key="index">
+        <ul v-for="(num,index) in 5" :key="'num_' + index">
+            <!--key="index"   修改  key="'num_' + index"-->
             <li>
                 {{index}} - {{num}}
             </li>

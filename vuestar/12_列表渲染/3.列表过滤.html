@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="输入姓名" v-model="keyWord"/>
+        <ul v-for="p in filPersons" :key="p.id">
+            <li>
+                {{p.name}} - {{p.age}} - {{p.sex}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        //阻止vue在启动时生成生产提示  
+        /*
+        监视属性书写功能
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                person:[
+                    {id:"001",name:'马冬梅',age:18,sex:'女'},
+                    {id:"002",name:'周杰',age:19,sex:'男'},
+                    {id:"003",name:'张三',age:20,sex:'男'},
+                    {id:"004",name:'老刘',age:21,sex:'男'}
+                ],
+                filPersons:[], //过滤后的数据   
+            },
+            //watch：监视属性(监视keyWord)----watch监听用户输入选项keyWord的变化
+            watch:{
+                keyWord:{
+                    immediate:true,//上来就进行监视获得的newVal
+                    handler(val){
+                    //不要修改元数据，这样只会越写越乱  
+                    //注意某一个字符串，indexOf（''）是0而不是-1(包含空字符串)
+                        this.filPersons = this.person.filter((p)=>{
+                            return p.name.indexOf(val) !== -1
+                        })
+                    }
+                }
+            }   
+        })  
+        //用计算属性写功能
+
+        //当computed和watch同时存在时，computed优先级高于watch （计算属性优先级高于监视属性 重要！！！！）
+        */
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                person:[
+                    {id:"001",name:'马冬梅',age:18,sex:'女'},
+                    {id:"002",name:'周杰',age:19,sex:'男'},
+                    {id:"003",name:'张三',age:20,sex:'男'},
+                    {id:"004",name:'老刘',age:21,sex:'男'}
+                ],
+            },              
+            computed:{//computed：计算属性
+                filPersons(){//计算属性中的方法，必须返回一个值 
+                    return this.person.filter((p)=>{
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                }
+            }
+        })  
+    </script>
+</body>
+</html>
