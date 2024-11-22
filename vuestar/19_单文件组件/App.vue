@@ -1,3 +1,15 @@
+<!--
+component:组件 目录来统一管理：
+src/
+  ├── components/        # 放置所有公共组件
+  │   └── local.vue
+  ├── views/            # 放置页面级组件
+  ├── App.vue
+  └── main.js
+
+-->
+
+
 <template>
   <div>
     <own></own>//定义组件
