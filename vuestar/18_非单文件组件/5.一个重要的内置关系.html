@@ -8,6 +8,56 @@
     <link rel="icon" href="data:,">
 </head>
 <body>
-    
+    <div id="root">
+        <school></school>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        Vue.prototype.x = {a:1,b:2};
+        const vm = Vue.extend({
+            template:`
+            <div>
+                <h1>个人姓名：{{name}}</h1>
+                <h1>个人地址：{{address}}</h1>
+                <button @click="showname">点我输出</button>
+                <button @click="cdf">点我输出原型</button>
+            </div>
+            `,
+            data(){
+                return {
+                    name:'橘子洲头',
+                    address:'长沙'
+                }
+            },
+            methods:{
+                showname(){
+                    console.log(this);
+                    console.log(this.name);
+                },
+                cdf(){
+                    console.log(this);
+                    console.log(Object.getPrototypeOf(Object.getPrototypeOf(this)) === Vue.prototype);
+                    //Object.getPrototypeOf(this) 获取当前对象的原型对象,以上是规范写法
+                    //Object.getPrototypeOf(Object.getPrototypeOf(this)) 获取当前对象的原型对象的原型对象   
+                    console.log(this.x);
+                }
+            }
+        }); 
+
+        new vm({
+            el:'#root',
+            data:{
+                name:'橘子洲头',
+                address:'长沙'
+            },
+            methods:{
+                showname(){
+                    console.log(this);
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>
