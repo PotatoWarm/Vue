@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总结生命周期</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div id="root">
+        <h1 :style="{opacity}">透明度：{{opacity}}</h1>
+        <button @click="stop">停止变更</button>
+        <!-- 
+            当透明度为0时，点击按钮停止（stop），透明度(opacity)设置为1
+            @click="XXX"为事件绑定，XXX为函数名
+         -->
+        <button @click="opacity=1">透明度设置为1</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",//#root是id为root的容器
+            data:{//data是数据对象
+                opacity:1,//透明度
+            },
+            methods:{//methods是方法对象
+                stop(){
+                    //只是清除定时器（外部定时器），响应式仍然存在
+                    // clearInterval(timer);
+                    //销毁定时器，响应式不再存在    
+                    this.$destroy();//$destroy是销毁函数    
+                }
+            },
+            mounted(){
+                //关键性时刻调用函数 生命周期   
+                //启动定时器，每隔1秒让n-0.01，当n<=0时，停止定时器
+                console.log("mounted");
+                this.timer = setInterval(() => {//setInterval是定时器函数
+                    console.log("定时器执行了");
+                    this.opacity -= 0.01;
+                    if(this.opacity <= 0) this.opacity = 1;
+                },16);
+            },
+            beforeDestroy(){//beforeDestroy是销毁函数
+                console.log("vm要没了");
+                clearInterval(this.timer);//clearInterval是清除定时器函数
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非单文件组件</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+
+    <!-- 
+        vue中使用组件的三大步骤：
+            1.定义组件（创建组件构造器）
+            2.注册组件
+            3.使用组件（写组件标签）
+
+        一、如何定义一个组件？
+            1.使用Vue.extend(options)创建，其中options和new Vue(options)时传入的options几乎一样，但也有点区别
+            区别如下：
+                1.el不要写，为什么？----因为最终所有的组件都要被注册到某个vm的管理，由vm中的el决定服务于哪个容器。
+                2.data必须写成函数，为什么？---- 因为组件可能被使用多次，如果写成对象形式，会导致数据共享 （避免组件被复用，数据存在引用关系。）
+            备注：使用template可以配置组件结构。
+        二、如何注册组件？
+            1.局部注册：靠new Vue的时候传入components选项
+            2.全局注册：靠Vue.component('组件名',组件)  
+
+        三、如何使用组件？
+            1.局部使用：靠new Vue的时候传入components选项
+            2.全局使用：靠Vue.component('组件名',组件)  
+            备注：使用组件时，若用到template，则需要使用组件标签。  
+
+        四、一个重要的内置关系：
+            VueComponent.prototype.__proto__ === Vue.prototype
+            为什么要有这个关系？---- 让组件实例对象（vc）可以访问到 Vue原型上的属性、方法。
+
+        五、使用组件的步骤总结：
+            1.创建组件构造器
+            2.注册组件
+            3.使用组件  
+
+        六、一个重要的内置关系：
+            VueComponent.prototype.__proto__ === Vue.prototype
+            为什么要有这个关系？---- 让组件实例对象（vc）可以访问到 Vue原型上的属性、方法。 
+
+        七、使用组件的注意点：
+            1.关于组件名：
+                一个单词组成：第一种写法（首字母小写），第二种写法（首字母大写）
+                多个单词组成：全部小写，单词之间用-连接
+                备注：组件名尽可能回避HTML中已有的元素名称，例如：h1、span等        
+
+            2.关于组件标签：
+                第一种写法：<school></school>
+                第二种写法：<school/> （简写方式）
+                备注：不用使用脚手架开发时，简写方式会失效。
+
+            3.一个简写方式：
+                const school = Vue.extend(options) 创建组件构造器时，options可以简写，
+                因为使用了Vue.extend()，所以组件构造器返回的是一个扩展实例对象（vc）
+                由于返回的是一个对象，所以可以省略Vue.extend()
+                即：const school = Vue.extend(options) 可以简写为 const school = options    
+
+            4.一个重要的内置关系：
+                VueComponent.prototype.__proto__ === Vue.prototype
+                为什么要有这个关系？---- 让组件实例对象（vc）可以访问到 Vue原型上的属性、方法。 
+                
+    -->
+    <div id="root">
+        <!-- //root是id为root的容器 -->
+        <h1>{{sum}}</h1>
+        <Hello></Hello>
+        <!-- 组件标签可以简写为<Hello/> 注意：简写时没有结束标签 -->
+        <hr>
+        <School></School>
+        <hr/>
+        <Student></Student>
+        <hr/>
+    </div>
+
+
+    <div id="root2">
+        <!-- //root2是id为root2的容器 -->
+        <h1>root2容器</h1>
+        <Hello></Hello>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        //创建组件
+        /*
+        想使用组件，需要先注册组件，再使用组件  
+        注册组件的语法：Vue.component('组件名',组件)    
+        注册组件时，组件名不要使用驼峰命名，使用短横线命名  
+        注册组件时，组件名不要使用原生HTML标签名，使用自定义标签名      
+        三个步骤：
+            1.创建组件构造器对象
+            2.注册组件
+            3.使用组件
+        */
+        const School =  Vue.extend({
+            //template是模板，template是Vue提供的，用于定义组件的模板
+            template:`
+            <div>
+                <h1>学校名称：{{schoolName}}</h1>
+                <h2>学校地址：{{address}}</h2>
+                <button @click="showName">点我显示学校名称</button>
+            </div>
+            `,
+            //组件定义不要写el配置项，因为组件最终会被注册到某个vm上（vm是Vue的实例，最终要被vm所管理，由vm决定服务于哪个容器）
+            //这里data必须写成函数形式，避免多次使用组件导致共用一个data，导致数据混乱
+            data(){
+                //注意这里不要
+                return {
+                    schoolName:"长沙",
+                    address:"橘子洲头"
+                }
+            },
+            methods:{
+                showName(){
+                    alert(this.schoolName);
+                }
+            }
+        });
+
+        const Student = Vue.extend({
+            template:`
+            <div>
+                <h1>学生姓名：{{studentName}}</h1>
+                <h2>学生年龄：{{age}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    studentName:"张三",
+                    age:18
+                }
+            }
+        });
+
+        const Hello = Vue.extend({
+            template:`
+            <div>
+                <h1>你好世界，{{name}}</h1>
+            </div>
+            `,
+            data(){
+                return {
+                    name:"lingling"
+                }
+            }
+        });
+
+        //注册组件
+        Vue.component("Hello",Hello);//全局注册hello就代表所有vm都可以使用hello组件 
+
+        //创建vm
+        new Vue({
+            el:"#root",
+            //配置组件（局部注册）
+            data:{
+                msg:"你好世界"
+            },  
+            components:{
+                School,
+                Student
+            }
+        }); 
+
+        new Vue({
+            el:"#root2",
+            data:{
+                sum:0
+            }
+        });
+    </script>
+</body>
+</html>

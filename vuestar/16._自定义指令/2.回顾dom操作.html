@@ -5,9 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>回顾dom操作</title>
     <script src="../js/vue.js"></script>
+    <style>
+        .demo{
+            background-color: deeppink;
+        }
+    </style>
 </head>
 <body>
-    <div id="root">
-    </div>
+    <!--
+        DOM树结构：
+        document
+            └── html
+                ├── head
+                │   ├── meta
+                │   ├── meta
+                │   ├── title
+                │   ├── script
+                │   └── style
+                └── body
+                    ├── button
+                    └── script
+    
+    -->
+    <button id="btn">点我</button>
+    <input type="text">
+    <script type="text/javascript">
+
+        const btn=document.getElementById('btn');
+        btn.onclick = () => {
+            const input = document.querySelector('input');
+            input.className = ('demo');
+            input.value = ('123');  
+            input.onclick = () => {
+                alert('点我');
+
+            console.log(input.parentElement);
+            //此时他的parentElement属性是null，无法获取，因为它并不在dom树中   
+            //将input添加到dom树中  
+            document.body.appendChild(input);
+            //input出现的时候，会让其自动获取焦点
+            //此时input已经添加到dom树中，所以可以获取到parentElement
+            //一定要放在dom树中，才能获取到parentElement
+
+            input.focus(); 
+            input.parentElement.style.backgroundColor = 'deeppink';
+            }   
+        }
+    </script>
 </body>
 </html>

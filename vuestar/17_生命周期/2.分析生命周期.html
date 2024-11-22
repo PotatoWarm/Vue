@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析生命周期</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div id="root">
+        <!--
+        生命周期：  
+        1.又名：生命周期回调函数、生命周期函数、生命周期钩子
+        2.是什么：Vue在关键时刻帮我们调用的一些特殊名称的函数
+        3.生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的
+        4.生命周期函数中的this是vm或组件实例对象
+        --> 
+        <h1 v-if="a">你好啊{{n}}</h1>
+        <h1 :style="{opacity:n}">透明度：{{n}}</h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                a:true,
+                n:1
+            },
+            methods:{
+            },
+            //mounted：挂载完成，当前阶段可以访问到DOM元素 
+            //vue完成模板的解析并把初始的真实DOM元素放入页面后调用mounted函数
+            //只调用一次
+            mounted(){
+                //关键性时刻调用函数 生命周期
+                console.log("mounted");
+                const timer = setInterval(() => {
+                    //箭头函数没有this会从外部作用域寻找，mounted是由vue管理的函数，所以该函数中的this是vm（vue实例对象）
+                    this.n -= 0.01;
+                    if(this.n <= 0) this.n = 1;
+                },1000);
+            }   
+        });
+
+        //通过外部的定时器实现，不推荐
+        // setInterval(() => {
+        //     vm.n -= 0.01;
+        //     if(vm.n <= 0) vm.n = 1;
+        // },1000); 
+    </script>
+</body>
+</html>

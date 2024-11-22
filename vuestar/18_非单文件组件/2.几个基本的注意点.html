@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>几个基本的注意点</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+    <div id="root">
+        <!-- 局部组件 -->
+        <Hello></Hello>
+        <lingling></lingling> 
+    </div>
+
+    
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        // 定义 Hello 和 lingling 全局组件
+        const Hello = Vue.extend({
+            template:`
+            <div>
+                <h1>你好世界</h1>
+                <h2>你好世界,{{world}}</h2>
+                <h2>所属地域：{{address}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    world:"你好世界",
+                    address:"长沙"
+                }
+            }
+        })
+
+        
+        const lingling = Vue.extend({
+            template:`
+            <div>
+                <h1>你好世界：{{world}}</h1>
+                <h2>我是一个很棒的人：{{amazing}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    amazing:"我是一个很棒的人",
+                    world:"hello world"
+                }
+            }
+        })  
+
+        new Vue({
+            el:"#root",
+            data:{
+                msg:"你好世界"
+            },
+            components:{  // 局部注册组件   
+                Hello,  // 局部注册
+                lingling,  // 局部注册
+            }
+        })
+    </script>
+</body>
+</html>

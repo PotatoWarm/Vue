@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的嵌套</title>
+    <script src="../js/vue.js"></script>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <!-- 
+
+
+    代码中的关系嵌套：
+        Vue根实例
+        └── app组件
+            └── hello组件
+                └── lingling组件
+
+    组件的嵌套：
+        1.先定义子组件
+        2.再定义父组件，并注册子组件
+        3.创建根实例，注册父组件
+    -->
+    <div id="root">
+        <!-- 组件的嵌套：
+         <school></school>
+         <student></student>
+         <teacher></teacher>
+         <app></app>
+         -->
+        <app></app>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        //1.先定义子组件
+        const lingling = Vue.extend({
+            template:`
+            <div>
+                <h1>个人名称：{{linglingName}}</h1>
+                <h1>个人年龄：{{linglingAge}}</h1>
+            </div>
+            `,
+            // 数据
+            data(){
+                return {
+                    linglingName:"灵灵",
+                    linglingAge:18
+                }
+            },
+
+            methods:{
+                showName(){
+                    console.log(this);
+                    console.log(this.linglingName);
+                }
+            }
+        });
+        //2.再定义父组件，并注册子组件
+
+
+        const ip = Vue.extend({
+            template:`<h1>ip地址</h1>`
+        });
+
+        const hello  = Vue.extend({
+            template:`
+            <div>
+                <h1>ip地址名称：{{name}}</h1>
+                <h1>ip所属地域：{{address}}</h1>
+                <lingling></lingling>
+            </div>
+                `,
+
+            data(){
+                return {
+                    name:"橘子洲头",
+                    address:"长沙"
+                }
+            },
+            //组件嵌套
+            //这里也是局部注册组件
+            components:{
+                lingling,//只需要注册lingling组件
+            }
+        });
+        
+        const vmComponent = Vue.extend({
+            template:`<h1>hello wold</h1>`,
+        }); 
+        //3.创建根实例，注册父组件
+
+        const app = Vue.extend({
+            template:`
+            <div>
+                <hello></hello>
+                <vm></vm>
+            </div>`,
+            data(){
+                return {
+                    msg:"hello wold"
+                }
+            },
+            components:{
+                hello,
+                vm:vmComponent   //在app组件中注册vm组件
+            }
+        });
+
+        const vm = new Vue({
+            el:"#root",
+            components:{
+                app
+            }
+        }); 
+    </script>
+</body>
+</html>
