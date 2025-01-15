@@ -1,4 +1,6 @@
 <h1>🥔Potato Vue基础（Icon）<h1>
+
+此代码引领者 github账号: satsuki_yue  哔哩哔哩视频:尚硅谷Vue2.0+Vue3.0全套教程丨vuejs从入门到精通
 <h2>👏开场白</h2>
   重学Vue从2024年11月14开始往github上上传代码，现在已经在长沙学习了。
   接下我们一起成为更好的自己吧！
